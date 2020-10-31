@@ -1,0 +1,41 @@
+---
+- name: Unarchive
+  unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz
+    dest: /usr/local/src/
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: 0755
+    remote_src: true
+
+- name: Create symbolic link
+  file:
+    src: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus
+    dest: /usr/local/prometheus
+    state: link
+
+- name: Add targets
+  blockinfile:
+    path: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus.yml
+    block: |2
+        - job_name: 'node_exporter'
+          static_configs:
+          - targets: ['localhost:9100']
+        - job_name: 'mysqld_exporter'
+          static_configs:
+          - targets: ['localhost:9104']
+
+- name: Add unit file
+  template:
+    src: prometheus.service
+    dest: /usr/lib/systemd/system/prometheus.service
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: 0644
+
+- name: Start
+  systemd:
+    name: prometheus
+    enabled: yes
+    state: started
+    daemon_reload: yes

@@ -1,0 +1,7 @@
+---
+- name: Node Exporter
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: node_exporter

@@ -1,0 +1,4 @@
+---
+mysqld_exporter_version: 0.12.1
+owner: hirakida
+group: wheel

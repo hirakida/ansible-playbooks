@@ -1,0 +1,7 @@
+---
+- name: Prometheus
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: prometheus

@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus
+Documentation=https://prometheus.io/docs/
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/prometheus --config.file=/usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus.yml
+
+[Install]
+WantedBy=multi-user.target

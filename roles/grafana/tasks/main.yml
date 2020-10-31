@@ -1,0 +1,20 @@
+---
+- name: Add YUM repo
+  template:
+    src: grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  yum:
+    name: grafana
+    state: present
+
+- name: Start
+  systemd:
+    name: grafana-server
+    enabled: yes
+    state: started
+    daemon_reload: yes

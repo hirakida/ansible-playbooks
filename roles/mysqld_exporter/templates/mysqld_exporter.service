@@ -1,0 +1,12 @@
+[Unit]
+Description=MySQL Server Exporter
+Documentation=https://github.com/prometheus/mysqld_exporter
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/mysqld_exporter
+Environment=DATA_SOURCE_NAME=exporter:exporter@(localhost:3306)/
+
+[Install]
+WantedBy=multi-user.target

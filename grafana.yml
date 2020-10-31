@@ -1,0 +1,7 @@
+---
+- name: Grafana
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: grafana
