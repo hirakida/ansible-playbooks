@@ -1,0 +1,12 @@
+---
+- name: Install
+  yum:
+    name: nginx
+    state: present
+
+- name: Start
+  systemd:
+    name: nginx
+    enabled: yes
+    state: started
+    daemon_reload: yes

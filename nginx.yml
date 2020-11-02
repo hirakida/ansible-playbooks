@@ -2,16 +2,5 @@
 - name: Nginx
   hosts: all
   become: true
-  vars:
-  tasks:
-    - name: Install
-      yum:
-        name: nginx
-        state: present
-
-    - name: Start
-      systemd:
-        name: nginx
-        enabled: yes
-        state: started
-        daemon_reload: yes
+  roles:
+    - role: nginx

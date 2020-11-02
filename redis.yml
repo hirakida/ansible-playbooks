@@ -2,16 +2,5 @@
 - name: Redis
   hosts: all
   become: true
-  vars:
-  tasks:
-    - name: Install
-      yum:
-        name: redis
-        state: present
-
-    - name: Start
-      systemd:
-        name: redis
-        enabled: yes
-        state: started
-        daemon_reload: yes
+  roles:
+    - role: redis
