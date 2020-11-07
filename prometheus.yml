@@ -5,3 +5,5 @@
   vars:
   roles:
     - role: prometheus
+    - role: prometheus_pushgateway
+      tags: pushgateway

@@ -1,0 +1,11 @@
+[Unit]
+Description=Prometheus Pushgateway
+Documentation=https://prometheus.io/docs/instrumenting/pushing/
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/pushgateway
+
+[Install]
+WantedBy=multi-user.target

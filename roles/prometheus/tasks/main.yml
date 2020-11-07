@@ -18,6 +18,9 @@
   blockinfile:
     path: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus.yml
     block: |2
+        - job_name: 'pushgateway'
+          static_configs:
+          - targets: ['localhost:9091']
         - job_name: 'node_exporter'
           static_configs:
           - targets: ['localhost:9100']
