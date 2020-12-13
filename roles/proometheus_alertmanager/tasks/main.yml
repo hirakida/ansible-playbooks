@@ -1,0 +1,31 @@
+---
+- name: Unarchive
+  unarchive:
+    src: https://github.com/prometheus/alertmanager/releases/download/v{{ alertmanager_version }}/alertmanager-{{ alertmanager_version }}.linux-amd64.tar.gz
+    dest: /usr/local/src/
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: 0755
+    remote_src: true
+    creates: /usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64/
+
+- name: Create symbolic link
+  file:
+    src: /usr/local/src/alertmanager-{{ alertmanager_version }}.linux-amd64/alertmanager
+    dest: /usr/local/alertmanager
+    state: link
+
+- name: Add unit file
+  template:
+    src: alertmanager.service
+    dest: /usr/lib/systemd/system/alertmanager.service
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: 0644
+
+- name: Start
+  systemd:
+    name: alertmanager
+    enabled: yes
+    state: started
+    daemon_reload: yes

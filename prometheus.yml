@@ -4,6 +4,9 @@
   become: true
   vars:
   roles:
-    - role: prometheus
+    - role: proometheus_alertmanager
+      tags: alertmanager
     - role: prometheus_pushgateway
       tags: pushgateway
+    - role: prometheus
+      tags: prometheus
