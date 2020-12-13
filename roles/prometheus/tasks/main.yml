@@ -7,6 +7,7 @@
     group: "{{ group }}"
     mode: 0755
     remote_src: true
+    creates: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/
 
 - name: Create symbolic link
   file:
@@ -14,19 +15,30 @@
     dest: /usr/local/prometheus
     state: link
 
-- name: Add targets
-  blockinfile:
-    path: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus.yml
-    block: |2
-        - job_name: 'pushgateway'
-          static_configs:
-          - targets: ['localhost:9091']
-        - job_name: 'node_exporter'
-          static_configs:
-          - targets: ['localhost:9100']
-        - job_name: 'mysqld_exporter'
-          static_configs:
-          - targets: ['localhost:9104']
+#- name: Add targets
+#  blockinfile:
+#    path: /usr/local/src/prometheus-{{ prometheus_version }}.linux-amd64/prometheus.yml
+#    block: |2
+#        - job_name: 'pushgateway'
+#          static_configs:
+#          - targets: ['localhost:9091']
+#        - job_name: 'node_exporter'
+#          static_configs:
+#          - targets: ['localhost:9100']
+#        - job_name: 'mysqld_exporter'
+#          static_configs:
+#          - targets: ['localhost:9104']
+
+- name: Copy config files
+  template:
+    src: "{{item}}"
+    dest: /etc/prometheus/
+    owner: "{{ owner }}"
+    group: "{{ group }}"
+    mode: 0644
+  loop:
+    - prometheus.yml
+    - alerting_rules.yml
 
 - name: Add unit file
   template:
