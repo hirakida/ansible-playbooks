@@ -1,0 +1,6 @@
+---
+- name: Elastic
+  hosts: all
+  become: true
+  roles:
+    - role: elasticsearch

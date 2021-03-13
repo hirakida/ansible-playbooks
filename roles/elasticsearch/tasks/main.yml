@@ -1,0 +1,20 @@
+---
+- name: Add YUM repo
+  template:
+    src: elasticsearch.repo
+    dest: /etc/yum.repos.d/elasticsearch.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  yum:
+    name: elasticsearch
+    state: present
+
+- name: Start
+  systemd:
+    name: elasticsearch
+    enabled: yes
+    state: started
+    daemon_reload: yes
