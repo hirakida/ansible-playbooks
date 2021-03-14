@@ -1,7 +1,0 @@
----
-- name: MySQL Server Exporter
-  hosts: all
-  become: true
-  vars:
-  roles:
-    - role: mysqld_exporter

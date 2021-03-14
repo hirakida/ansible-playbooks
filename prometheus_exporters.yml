@@ -1,0 +1,10 @@
+---
+- name: Prometheus Exporters
+  hosts: all
+  become: true
+  vars:
+  roles:
+    - role: node_exporter
+      tags: node_exporter
+    - role: mysqld_exporter
+      tags: mysqld_exporter
