@@ -1,0 +1,20 @@
+---
+- name: Add YUM repo
+  template:
+    src: kibana.repo
+    dest: /etc/yum.repos.d/kibana.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  yum:
+    name: kibana
+    state: present
+
+- name: Start
+  systemd:
+    name: kibana
+    enabled: yes
+    state: started
+    daemon_reload: yes
