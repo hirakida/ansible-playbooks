@@ -1,0 +1,15 @@
+---
+- name: Install ICU Analysis plugin
+  elasticsearch_plugin:
+    name: analysis-icu
+    state: present
+
+- name: Install Kuromoji Analysis plugin
+  elasticsearch_plugin:
+    name: analysis-kuromoji
+    state: present
+
+- name: Install Kuromoji IPADic Neologd Analysis plugin
+  elasticsearch_plugin:
+    name: org.codelibs:elasticsearch-analysis-kuromoji-ipadic-neologd:7.2.0
+    state: present

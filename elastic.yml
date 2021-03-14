@@ -5,5 +5,7 @@
   roles:
     - role: elasticsearch
       tags: elasticsearch
+    - role: elasticsearch_plugin
+      tags: elasticsearch_plugin
     - role: kibana
       tags: kibana
