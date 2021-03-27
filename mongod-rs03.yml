@@ -1,0 +1,9 @@
+---
+- name: MongoDB Replica Set 03
+  hosts: mongod-rs03
+  become: true
+  vars:
+    repl_set_name: rs03
+    cluster_role: shardsvr
+  roles:
+    - role: mongod

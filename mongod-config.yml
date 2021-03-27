@@ -1,0 +1,9 @@
+---
+- name: MongoDB Config Servers
+  hosts: mongod-config
+  become: true
+  vars:
+    repl_set_name: rsconfig
+    cluster_role: configsvr
+  roles:
+    - role: mongod

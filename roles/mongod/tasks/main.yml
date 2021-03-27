@@ -1,0 +1,32 @@
+---
+- name: Add YUM repo
+  template:
+    src: mongodb-org-4.4.repo
+    dest: /etc/yum.repos.d/mongodb-org-4.4.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  yum:
+    name: mongodb-org
+    state: present
+
+- name: Copy mongod.conf
+  template:
+    src: mongod.conf
+    dest: /etc/mongod.conf
+
+- name: Start
+  systemd:
+    name: mongod
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Disable firewall
+  ansible.posix.firewalld:
+    port: 27017/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
