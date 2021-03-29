@@ -4,6 +4,5 @@
   become: true
   vars:
     repl_set_name: rs03
-    cluster_role: shardsvr
   roles:
     - role: mongod
