@@ -1,0 +1,7 @@
+# https://dev.mysql.com/doc/refman/8.0/en/linux-installation-yum-repo.html
+[mysql80-community]
+name=MySQL 8.0 Community Server
+baseurl=http://repo.mysql.com/yum/mysql-8.0-community/el/7/$basearch/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql

@@ -1,0 +1,8 @@
+---
+- name: MySQL Servers
+  hosts: mysql-servers
+  become: true
+  vars:
+  roles:
+    - role: mysqld
+    - role: mysqld_exporter

@@ -19,8 +19,8 @@
   template:
     src: mysqld_exporter.service
     dest: /usr/lib/systemd/system/mysqld_exporter.service
-    owner: "{{ owner }}"
-    group: "{{ group }}"
+    owner: root
+    group: root
     mode: 0644
 
 - name: Start
@@ -29,3 +29,10 @@
     enabled: yes
     state: started
     daemon_reload: yes
+
+- name: Disable firewall
+  ansible.posix.firewalld:
+    port: 9104/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes

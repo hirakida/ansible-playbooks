@@ -1,0 +1,27 @@
+---
+- name: Add YUM repo
+  template:
+    src: mysql-community.repo
+    dest: /etc/yum.repos.d/mysql-community.repo
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install
+  yum:
+    name: mysql-server
+    state: present
+
+- name: Start
+  systemd:
+    name: mysqld
+    enabled: yes
+    state: started
+    daemon_reload: yes
+
+- name: Disable firewall
+  ansible.posix.firewalld:
+    port: 3306/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes
