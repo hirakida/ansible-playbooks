@@ -1,4 +1,4 @@
 ---
-prometheus_version: 2.22.0
+prometheus_version: 2.26.0
 owner: hirakida
 group: wheel

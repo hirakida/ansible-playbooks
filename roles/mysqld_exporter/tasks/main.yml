@@ -30,7 +30,7 @@
     state: started
     daemon_reload: yes
 
-- name: Disable firewall
+- name: Open firewall port
   ansible.posix.firewalld:
     port: 9104/tcp
     permanent: yes
