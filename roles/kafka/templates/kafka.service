@@ -1,0 +1,12 @@
+[Unit]
+Description=Apache Kafka
+Documentation=https://kafka.apache.org/
+After=network-online.target kafka-zookeeper.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/kafka/bin/kafka-server-start.sh /usr/local/kafka/config/server.properties
+ExecStop=/usr/local/kafka/bin/kafka-server-stop.sh
+
+[Install]
+WantedBy=multi-user.target

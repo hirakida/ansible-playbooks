@@ -1,0 +1,8 @@
+---
+- name: Kafka
+  hosts: kafka
+  become: true
+  roles:
+    - role: node_exporter
+    - role: openjdk
+    - role: kafka
