@@ -1,6 +1,6 @@
 ---
 - name: Add YUM repo
-  template:
+  copy:
     src: mysql-community.repo
     dest: /etc/yum.repos.d/mysql-community.repo
     owner: root
@@ -12,15 +12,20 @@
     name: mysql-server
     state: present
 
+- name: Copy my.cnf
+  copy:
+    src: my.cnf
+    dest: /etc/my.cnf
+
 - name: Start
   systemd:
     name: mysqld
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 3306/tcp
     permanent: yes
     state: enabled

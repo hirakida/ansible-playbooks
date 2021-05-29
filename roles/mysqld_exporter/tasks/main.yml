@@ -16,7 +16,7 @@
     state: link
 
 - name: Add unit file
-  template:
+  copy:
     src: mysqld_exporter.service
     dest: /usr/lib/systemd/system/mysqld_exporter.service
     owner: root
@@ -26,12 +26,12 @@
 - name: Start
   systemd:
     name: mysqld_exporter
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9104/tcp
     permanent: yes
     state: enabled

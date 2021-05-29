@@ -1,6 +1,6 @@
 ---
 - name: MySQL Servers
-  hosts: mysql-servers
+  hosts: mysqld
   become: true
   vars:
   roles:
