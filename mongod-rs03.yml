@@ -1,8 +1,0 @@
----
-- name: MongoDB Replica Set 03
-  hosts: mongod-rs03
-  become: true
-  vars:
-    repl_set_name: rs03
-  roles:
-    - role: mongod

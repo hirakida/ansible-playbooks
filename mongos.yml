@@ -1,8 +1,0 @@
----
-- name: Mongos
-  hosts: mongos
-  become: true
-  vars:
-    config_db: rsconfig/192.168.13.211:27017,192.168.13.212:27017,192.168.13.213:27017
-  roles:
-    - role: mongos
