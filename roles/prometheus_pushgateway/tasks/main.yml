@@ -16,7 +16,7 @@
     state: link
 
 - name: Add unit file
-  template:
+  copy:
     src: pushgateway.service
     dest: /usr/lib/systemd/system/pushgateway.service
     owner: root
@@ -26,12 +26,12 @@
 - name: Start
   systemd:
     name: pushgateway
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9091/tcp
     permanent: yes
     state: enabled

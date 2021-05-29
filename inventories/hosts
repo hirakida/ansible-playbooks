@@ -48,5 +48,8 @@ mongos
 [kibana]
 192.168.13.231
 
-[prometheus-servers]
+[prometheus]
+192.168.13.251
+
+[grafana]
 192.168.13.251

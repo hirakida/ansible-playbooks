@@ -16,7 +16,7 @@
     state: link
 
 - name: Add unit file for ZooKeeper
-  template:
+  copy:
     src: kafka-zookeeper.service
     dest: /usr/lib/systemd/system/kafka-zookeeper.service
     owner: root
@@ -24,7 +24,7 @@
     mode: 0644
 
 - name: Add unit file for Kafka
-  template:
+  copy:
     src: kafka.service
     dest: /usr/lib/systemd/system/kafka.service
     owner: root
@@ -44,19 +44,19 @@
 - name: Start ZooKeeper
   systemd:
     name: kafka-zookeeper
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Start Kafka
   systemd:
     name: kafka
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9092/tcp
     permanent: yes
     state: enabled

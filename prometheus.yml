@@ -1,10 +1,18 @@
 ---
 - name: Prometheus
-  hosts: prometheus-servers
+  hosts: prometheus
   become: true
   roles:
     - role: node_exporter
     - role: prometheus_pushgateway
     - role: prometheus_alertmanager
     - role: prometheus
+  tags:
+    - prometheus
+- name: Grafana
+  hosts: grafana
+  become: true
+  roles:
     - role: grafana
+  tags:
+    - grafana

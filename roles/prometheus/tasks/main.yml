@@ -41,7 +41,7 @@
     - alerting_rules.yml
 
 - name: Add unit file
-  template:
+  copy:
     src: prometheus.service
     dest: /usr/lib/systemd/system/prometheus.service
     owner: root
@@ -51,12 +51,12 @@
 - name: Start
   systemd:
     name: prometheus
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9090/tcp
     permanent: yes
     state: enabled

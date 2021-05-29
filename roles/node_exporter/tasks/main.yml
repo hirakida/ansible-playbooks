@@ -16,22 +16,22 @@
     state: link
 
 - name: Add unit file
-  template:
+  copy:
     src: node_exporter.service
     dest: /usr/lib/systemd/system/node_exporter.service
-    owner: "{{ owner }}"
-    group: "{{ group }}"
+    owner: root
+    group: root
     mode: 0644
 
 - name: Start
   systemd:
     name: node_exporter
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9100/tcp
     permanent: yes
     state: enabled

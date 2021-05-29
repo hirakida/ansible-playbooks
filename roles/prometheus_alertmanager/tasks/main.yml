@@ -26,12 +26,12 @@
 - name: Start
   systemd:
     name: alertmanager
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
 
 - name: Open firewall port
-  ansible.posix.firewalld:
+  firewalld:
     port: 9093/tcp
     permanent: yes
     state: enabled
