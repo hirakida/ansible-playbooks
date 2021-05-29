@@ -1,6 +1,6 @@
 ---
 - name: Add YUM repo
-  template:
+  copy:
     src: kibana.repo
     dest: /etc/yum.repos.d/kibana.repo
     owner: root
@@ -12,9 +12,21 @@
     name: kibana
     state: present
 
+- name: Copy kibana.yml
+  copy:
+    src: kibana.yml
+    dest: /etc/kibana/kibana.yml
+
 - name: Start
   systemd:
     name: kibana
+    state: restarted
     enabled: yes
-    state: started
     daemon_reload: yes
+
+- name: Open firewall port
+  firewalld:
+    port: 5601/tcp
+    permanent: yes
+    state: enabled
+    immediate: yes

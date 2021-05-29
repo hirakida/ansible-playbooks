@@ -1,11 +1,16 @@
 ---
-- name: Elastic
-  hosts: all
+- name: Elasticsearch
+  hosts: elasticsearch
   become: true
   roles:
     - role: elasticsearch
-      tags: elasticsearch
     - role: elasticsearch_plugin
-      tags: elasticsearch_plugin
+  tags:
+    - elasticsearch
+- name: Kibana
+  hosts: kibana
+  become: true
+  roles:
     - role: kibana
-      tags: kibana
+  tags:
+    - kibana

@@ -42,5 +42,11 @@ mongos
 [kafka]
 192.168.13.226
 
+[elasticsearch]
+192.168.13.231
+
+[kibana]
+192.168.13.231
+
 [prometheus-servers]
 192.168.13.251
