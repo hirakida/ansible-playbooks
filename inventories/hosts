@@ -40,7 +40,12 @@ mongos
 192.168.13.221
 
 [kafka]
-192.168.13.226
+192.168.13.226 broker_id=1
+192.168.13.227 broker_id=2
+192.168.13.228 broker_id=3
+
+[kafka-zookeeper]
+192.168.13.229
 
 [elasticsearch]
 192.168.13.231

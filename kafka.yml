@@ -1,7 +1,17 @@
 ---
-- name: Kafka
+- name: Kafka Zookeeper
+  hosts: kafka-zookeeper
+  become: true
+  roles:
+    - role: node_exporter
+    - role: openjdk
+    - role: kafka_zookeeper
+
+- name: Kafka Brokers
   hosts: kafka
   become: true
+  vars:
+    zookeeper_connect: 192.168.13.229:2181
   roles:
     - role: node_exporter
     - role: openjdk

@@ -17,32 +17,26 @@
 
 - name: Add unit file
   copy:
-    src: kafka.service
-    dest: /usr/lib/systemd/system/kafka.service
+    src: kafka-zookeeper.service
+    dest: /usr/lib/systemd/system/kafka-zookeeper.service
     owner: root
     group: root
     mode: 0644
 
-- name: Copy config files
-  template:
-    src: "{{item}}"
-    dest: /usr/local/kafka/config/
-    owner: "{{ owner }}"
-    group: "{{ group }}"
-    mode: 0755
-  loop:
-    - server.properties
-
-- name: Start Kafka
+- name: Start ZooKeeper
   systemd:
-    name: kafka
+    name: kafka-zookeeper
     state: restarted
     enabled: yes
     daemon_reload: yes
 
-- name: Open firewall port
+- name: Open firewall ports
   firewalld:
-    port: 9092/tcp
+    port: "{{ item.port }}/tcp"
     permanent: yes
     state: enabled
     immediate: yes
+  with_items:
+    - { 'port': 2181 }
+    - { 'port': 2888 }
+    - { 'port': 3888 }
