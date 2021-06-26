@@ -1,6 +1,6 @@
 ---
 - name: Kafka Zookeeper
-  hosts: kafka-zookeeper
+  hosts: kafka_zookeeper
   become: true
   roles:
     - role: node_exporter

@@ -1,22 +1,22 @@
 [webservers]
 centos8-001
 
-[mongod-rs01]
+[mongod_rs01]
 192.168.13.201
 192.168.13.202
 192.168.13.203
 
-[mongod-rs02]
+[mongod_rs02]
 192.168.13.204
 192.168.13.205
 192.168.13.206
 
-[mongod-rs03]
+[mongod_rs03]
 192.168.13.207
 192.168.13.208
 192.168.13.209
 
-[mongod-config]
+[mongod_config]
 192.168.13.211
 192.168.13.212
 192.168.13.213
@@ -26,10 +26,10 @@ centos8-001
 192.168.13.215
 
 [mongodb:children]
-mongod-rs01
-mongod-rs02
-mongod-rs03
-mongod-config
+mongod_rs01
+mongod_rs02
+mongod_rs03
+mongod_config
 mongos
 
 [mysqld]
@@ -40,7 +40,7 @@ mongos
 192.168.13.227 broker_id=2
 192.168.13.228 broker_id=3
 
-[kafka-zookeeper]
+[kafka_zookeeper]
 192.168.13.229
 
 [elasticsearch]

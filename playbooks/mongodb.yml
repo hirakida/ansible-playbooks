@@ -1,6 +1,6 @@
 ---
 - name: MongoDB Config Servers
-  hosts: mongod-config
+  hosts: mongod_config
   become: true
   vars:
     repl_set_name: rsconfig
@@ -11,7 +11,7 @@
     - rsconfig
 
 - name: MongoDB Replica Set 01
-  hosts: mongod-rs01
+  hosts: mongod_rs01
   become: true
   vars:
     repl_set_name: rs01
@@ -22,7 +22,7 @@
     - rs01
 
 - name: MongoDB Replica Set 02
-  hosts: mongod-rs02
+  hosts: mongod_rs02
   become: true
   vars:
     repl_set_name: rs02
@@ -33,7 +33,7 @@
     - rs02
 
 - name: MongoDB Replica Set 03
-  hosts: mongod-rs03
+  hosts: mongod_rs03
   become: true
   vars:
     repl_set_name: rs03
