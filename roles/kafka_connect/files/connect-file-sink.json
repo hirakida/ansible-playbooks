@@ -1,0 +1,9 @@
+{
+  "name": "file-sink",
+  "config": {
+    "connector.class": "FileStreamSink",
+    "tasks.max": 1,
+    "file": "/usr/local/kafka/test.sink.txt",
+    "topics": "connect-test1"
+  }
+}

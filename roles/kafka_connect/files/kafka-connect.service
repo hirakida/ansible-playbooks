@@ -1,0 +1,11 @@
+[Unit]
+Description=Apache Kafka Connect
+Documentation=https://kafka.apache.org/
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/kafka/bin/connect-distributed.sh /usr/local/kafka/config/connect-distributed.properties
+
+[Install]
+WantedBy=multi-user.target

@@ -43,6 +43,9 @@ mongos
 [kafka_zookeeper]
 192.168.13.229
 
+[kafka_connect]
+192.168.13.230
+
 [elasticsearch]
 192.168.13.231
 

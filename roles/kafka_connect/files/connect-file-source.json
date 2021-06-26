@@ -1,0 +1,9 @@
+{
+  "name": "file-source",
+  "config": {
+    "connector.class": "FileStreamSource",
+    "tasks.max": 1,
+    "file": "/usr/local/kafka/test.txt",
+    "topic": "connect-test1"
+  }
+}
