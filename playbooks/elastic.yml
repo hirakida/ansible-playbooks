@@ -7,6 +7,7 @@
     - role: elasticsearch_plugin
   tags:
     - elasticsearch
+
 - name: Kibana
   hosts: kibana
   become: true

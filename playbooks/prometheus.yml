@@ -9,6 +9,7 @@
     - role: prometheus
   tags:
     - prometheus
+
 - name: Grafana
   hosts: grafana
   become: true
